@@ -25,11 +25,11 @@ export default function () {
             let long = position.coords.longitude;
             let API_KEY = app.forum.attribute('wheaterApiKey');
             let lang = app.forum.attribute('lang') || 'en';
-            let baseURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&lang=${lang}&appid=${API_KEY}`;
+            let baseURL = `https://v0.yiketianqi.com/api?unescape=1&version=v61&lat=${lat}&lng=${long}&appid=${lang}&appsecret=${API_KEY}`;
 
             $.get(baseURL, function (res) {
-                let data = res.current;
-                let temp = Math.floor(data.temp - 273);
+                let data = res;
+                let temp = res.air;
                 let condition = data.weather[0].description;
 
                 $('#temp-main').html(`${temp}°`);
